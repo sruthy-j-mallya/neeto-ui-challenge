@@ -1,8 +1,9 @@
 import React from "react";
 
-import dayjs from "dayjs";
 import { MenuVertical, Clock } from "neetoicons";
 import { Typography, Dropdown, Tooltip, Avatar, Tag } from "neetoui";
+
+import { formatCreatedAt, calculateCreatedAgo } from "./utils";
 
 const { Menu, MenuItem } = Dropdown;
 
@@ -15,26 +16,21 @@ const Note = ({ note }) => (
       <Dropdown buttonStyle="text" icon={MenuVertical}>
         <Menu>
           <MenuItem.Button>Edit</MenuItem.Button>
-          <MenuItem.Button>Delete</MenuItem.Button>
+          <MenuItem.Button style="danger">Delete</MenuItem.Button>
         </Menu>
       </Dropdown>
     </div>
-    <div className="mb-2">
-      <Typography style="body2">{note.description}</Typography>
-    </div>
+    <Typography className="mb-2" style="body2">
+      {note.description}
+    </Typography>
     <hr />
-    <div className="flex justify-between">
-      <div className="mt-3">
-        <Tag label="Getting Started" size="small" />
-      </div>
-      <div className="mt-3 flex items-center space-x-1">
+    <div className="mt-3 flex justify-between">
+      <Tag label="Getting Started" size="small" />
+      <div className="flex items-center space-x-1">
         <Clock size="15" />
-        <Tooltip
-          content={dayjs(note.createdAt).format("dddd, hh:mmA")}
-          position="bottom"
-        >
+        <Tooltip content={formatCreatedAt(note.createdAt)} position="bottom">
           <Typography style="body3">
-            {`${note.status} ${dayjs(note.createdAt).fromNow()} `}
+            {`${note.status} ${calculateCreatedAgo(note.createdAt)}`}
           </Typography>
         </Tooltip>
         <Avatar

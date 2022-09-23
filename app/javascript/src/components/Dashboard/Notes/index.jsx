@@ -6,7 +6,7 @@ import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 
-import { NOTES_CARD_DATA as notesData } from "./constants";
+import { NOTES_CARD_DATA } from "./constants";
 import Menu from "./Menu";
 import Note from "./Note";
 
@@ -19,7 +19,7 @@ const Notes = () => {
       <Menu showMenu={showMenu} />
       <Container>
         <Header
-          menuBarToggle={() => setShowMenu(!showMenu)}
+          menuBarToggle={() => setShowMenu(showMenu => !showMenu)}
           title="All Notes"
           actionBlock={
             <Button
@@ -34,10 +34,10 @@ const Notes = () => {
             onChange: e => setSearchTerm(e.target.value),
           }}
         />
-        {notesData.length ? (
+        {NOTES_CARD_DATA.length > 0 ? (
           <>
-            {notesData.map(note => (
-              <Note key={note.id} note={note} />
+            {NOTES_CARD_DATA.map(note => (
+              <Note key={"id"} note={note} />
             ))}
           </>
         ) : (
