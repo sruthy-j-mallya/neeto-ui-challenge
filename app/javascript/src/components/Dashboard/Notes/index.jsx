@@ -16,7 +16,7 @@ const Notes = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [notes, setNotes] = useState(NOTES_CARD_DATA);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-  const [selectedNoteId, setSelectedNoteId] = useState();
+  const [selectedNoteId, setSelectedNoteId] = useState(0);
 
   return (
     <>
@@ -42,7 +42,7 @@ const Notes = () => {
           <>
             {notes.map(note => (
               <Note
-                key={"id"}
+                key={note.id}
                 note={note}
                 setSelectedNoteId={setSelectedNoteId}
                 setShowDeleteAlert={setShowDeleteAlert}
