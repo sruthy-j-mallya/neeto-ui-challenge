@@ -5,9 +5,9 @@ import { Typography, Dropdown, Tooltip, Avatar, Tag } from "neetoui";
 
 import { formatCreatedAt, calculateCreatedAgo } from "./utils";
 
-const Note = ({ note, setShowDeleteAlert, setSelectedNoteId }) => {
-  const { Menu, MenuItem } = Dropdown;
+const { Menu, MenuItem } = Dropdown;
 
+const Note = ({ note, setShowDeleteAlert, setSelectedNoteId }) => {
   const handleDelete = () => {
     setShowDeleteAlert(true);
     setSelectedNoteId(note.id);
