@@ -10,13 +10,15 @@ import { NOTES_CARD_DATA } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Note from "./Note";
+import NewNotePane from "./Pane/Create";
 
 const Notes = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [notes, setNotes] = useState(NOTES_CARD_DATA);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
-  const [selectedNoteId, setSelectedNoteId] = useState();
+  const [selectedNoteId, setSelectedNoteId] = useState(0);
+  const [showNewNotePane, setShowNewNotePane] = useState(false);
 
   return (
     <>
@@ -30,7 +32,7 @@ const Notes = () => {
               icon="ri-add-line"
               label="Add new note"
               size="small"
-              onClick={() => {}}
+              onClick={() => setShowNewNotePane(true)}
             />
           }
           searchProps={{
@@ -42,7 +44,7 @@ const Notes = () => {
           <>
             {notes.map(note => (
               <Note
-                key={"id"}
+                key={note.id}
                 note={note}
                 setSelectedNoteId={setSelectedNoteId}
                 setShowDeleteAlert={setShowDeleteAlert}
@@ -52,12 +54,16 @@ const Notes = () => {
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
-            primaryAction={() => {}}
+            primaryAction={() => setShowNewNotePane(true)}
             primaryActionLabel="Add new note"
             subtitle="Add your notes to send customized emails to them."
             title="Looks like you don't have any notes!"
           />
         )}
+        <NewNotePane
+          setShowPane={setShowNewNotePane}
+          showPane={showNewNotePane}
+        />
         {showDeleteAlert && (
           <DeleteAlert
             selectedNoteId={selectedNoteId}

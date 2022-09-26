@@ -1,13 +1,52 @@
+import { buildSelectOptions } from "utils";
 import * as yup from "yup";
 
 export const NOTES_FORM_INITIAL_FORM_VALUES = {
   title: "",
   description: "",
+  assignee: null,
+  tags: [],
 };
+
+export const ASSIGNEES = buildSelectOptions([
+  "Oliver Smith",
+  "Ronald Richards",
+  "Jacob Jones",
+]);
+
+export const TAGS = buildSelectOptions([
+  "Getting Started",
+  "Onboarding",
+  "User Flow",
+  "UX",
+  "Bugs",
+  "V2",
+]);
 
 export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
+  assignee: yup
+    .object()
+    .nullable()
+    .shape({
+      label: yup.string().oneOf(ASSIGNEES.map(assignee => assignee.label)),
+      value: yup.string().oneOf(ASSIGNEES.map(assignee => assignee.value)),
+    })
+    .required("Assigned Contact is required"),
+  tags: yup
+    .array()
+    .of(
+      yup
+        .object()
+        .nullable()
+        .shape({
+          label: yup.string().oneOf(TAGS.map(tag => tag.label)),
+          value: yup.string().oneOf(TAGS.map(tag => tag.value)),
+        })
+    )
+    .min(1, "At least 1 tag is required")
+    .required("Tag is required"),
 });
 
 export const NOTES_TABLE_COLUMN_DATA = [
