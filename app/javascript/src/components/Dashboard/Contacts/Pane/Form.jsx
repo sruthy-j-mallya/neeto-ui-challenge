@@ -34,21 +34,21 @@ const Form = ({ onClose, contact }) => {
               className="w-full flex-grow-0"
               label="First Name"
               name="firstName"
-              placeholder="Enter note first name"
+              placeholder="Enter first name"
             />
             <Input
               required
               className="w-full flex-grow-0"
               label="Last Name"
               name="lastName"
-              placeholder="Enter note last name"
+              placeholder="Enter last name"
             />
             <Input
               required
               className="w-full flex-grow-0"
               label="Email Address"
               name="email"
-              placeholder="Enter your email address"
+              placeholder="Enter email address"
             />
             <Select
               isSearchable
