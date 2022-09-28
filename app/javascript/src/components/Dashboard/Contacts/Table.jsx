@@ -20,54 +20,52 @@ const renderUser = ({ name, role }) => (
   </div>
 );
 
-const renderActionDropdown = () => (
+const renderActionDropdown = handleDelete => (
   <Dropdown buttonStyle="text" icon={MenuVertical}>
     <Menu>
       <MenuItem.Button>Edit</MenuItem.Button>
-      <MenuItem.Button style="danger" onClick={() => {}}>
+      <MenuItem.Button style="danger" onClick={handleDelete}>
         Delete
       </MenuItem.Button>
     </Menu>
   </Dropdown>
 );
 
-const COLUMNS = [
-  {
-    dataIndex: "user",
-    key: "user",
-    title: "NAME & ROLE",
-    width: "30%",
-    render: renderUser,
-  },
-  {
-    dataIndex: "email",
-    key: "email",
-    title: "EMAIL",
-    width: "30%",
-  },
-  {
-    dataIndex: "createdAt",
-    key: "createdAt",
-    title: "CREATED AT",
-    width: "30%",
-  },
-  {
-    key: "actions",
-    title: "",
-    width: "10%",
-    render: renderActionDropdown,
-  },
-];
-
-const Table = ({ tableData }) => (
+const Table = ({ tableData, handleDelete }) => (
   <NeetoUITable
     allowRowClick
     rowSelection
-    columnData={COLUMNS}
     currentPageNumber={1}
     defaultPageSize={8}
     handlePageChange={() => {}}
     rowData={tableData}
+    columnData={[
+      {
+        dataIndex: "user",
+        key: "user",
+        title: "NAME & ROLE",
+        width: "30%",
+        render: renderUser,
+      },
+      {
+        dataIndex: "email",
+        key: "email",
+        title: "EMAIL",
+        width: "30%",
+      },
+      {
+        dataIndex: "createdAt",
+        key: "createdAt",
+        title: "CREATED AT",
+        width: "30%",
+      },
+      {
+        key: "actions",
+        title: "",
+        width: "10%",
+        render: () => renderActionDropdown(handleDelete),
+      },
+    ]}
     onRowClick={() => {}}
     onRowSelect={() => {}}
   />
