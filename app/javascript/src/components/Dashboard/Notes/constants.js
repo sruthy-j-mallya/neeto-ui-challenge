@@ -49,21 +49,6 @@ export const VALIDATION_SCHEMA = yup.object().shape({
     .required("Tag is required"),
 });
 
-export const COLUMNS = [
-  {
-    title: "Title",
-    dataIndex: "title",
-    key: "title",
-    width: "30%",
-  },
-  {
-    title: "Description",
-    dataIndex: "description",
-    key: "description",
-    width: "70%",
-  },
-];
-
 export const CARD_DATA = [
   {
     id: 1,
