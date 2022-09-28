@@ -4,19 +4,21 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-const EditNotePane = ({ fetchNotes, showPane, setShowPane, note }) => {
+import { INITIAL_FORM_VALUES } from "../constants";
+
+const Create = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
 
   return (
     <Pane isOpen={showPane} onClose={onClose}>
       <Pane.Header>
         <Typography style="h2" weight="semibold">
-          Edit note
+          Add New Contact
         </Typography>
       </Pane.Header>
-      <Form isEdit note={note} refetch={fetchNotes} onClose={onClose} />
+      <Form contact={INITIAL_FORM_VALUES} onClose={onClose} />
     </Pane>
   );
 };
 
-export default EditNotePane;
+export default Create;

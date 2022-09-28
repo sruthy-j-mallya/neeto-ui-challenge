@@ -20,7 +20,7 @@ const renderUser = ({ name, role }) => (
   </div>
 );
 
-const renderActionsButton = () => (
+const renderActionDropdown = () => (
   <Dropdown buttonStyle="text" icon={MenuVertical}>
     <Menu>
       <MenuItem.Button>Edit</MenuItem.Button>
@@ -31,7 +31,7 @@ const renderActionsButton = () => (
   </Dropdown>
 );
 
-const tableColumnData = [
+const COLUMNS = [
   {
     dataIndex: "user",
     key: "user",
@@ -55,7 +55,7 @@ const tableColumnData = [
     key: "actions",
     title: "",
     width: "10%",
-    render: renderActionsButton,
+    render: renderActionDropdown,
   },
 ];
 
@@ -63,7 +63,7 @@ const Table = ({ tableData }) => (
   <NeetoUITable
     allowRowClick
     rowSelection
-    columnData={tableColumnData}
+    columnData={COLUMNS}
     currentPageNumber={1}
     defaultPageSize={8}
     handlePageChange={() => {}}

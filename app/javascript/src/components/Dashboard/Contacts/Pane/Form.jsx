@@ -2,17 +2,17 @@ import React, { useState } from "react";
 
 import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
-import { Input, Textarea, Select } from "neetoui/formik";
+import { Input, Select } from "neetoui/formik";
 
-import { VALIDATION_SCHEMA, ASSIGNEES, TAGS } from "../constants";
+import { VALIDATION_SCHEMA, ROLES } from "../constants";
 
-const Form = ({ onClose, note, isEdit }) => {
+const Form = ({ onClose, contact }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
     try {
       onClose();
-      Toastr.success("Note added successfully");
+      Toastr.success("Contact added successfully");
     } catch (err) {
       logger.error(err);
     }
@@ -20,7 +20,7 @@ const Form = ({ onClose, note, isEdit }) => {
 
   return (
     <Formik
-      initialValues={note}
+      initialValues={contact}
       validateOnBlur={submitted}
       validateOnChange={submitted}
       validationSchema={VALIDATION_SCHEMA}
@@ -32,43 +32,39 @@ const Form = ({ onClose, note, isEdit }) => {
             <Input
               required
               className="w-full flex-grow-0"
-              label="Title"
-              name="title"
-              placeholder="Enter note title"
+              label="First Name"
+              name="firstName"
+              placeholder="Enter note first name"
             />
-            <Textarea
+            <Input
               required
               className="w-full flex-grow-0"
-              label="Description"
-              name="description"
-              placeholder="Enter note description"
-              rows={1}
+              label="Last Name"
+              name="lastName"
+              placeholder="Enter note last name"
+            />
+            <Input
+              required
+              className="w-full flex-grow-0"
+              label="Email Address"
+              name="email"
+              placeholder="Enter your email address"
             />
             <Select
               isSearchable
               required
               className="w-full flex-grow-0"
-              label="Assigned Contact"
-              name="assignee"
-              options={ASSIGNEES}
-              placeholder="Select Contact"
-            />
-            <Select
-              isMulti
-              isSearchable
-              required
-              className="w-full flex-grow-0"
-              label="Tags"
-              name="tags"
-              options={TAGS}
-              placeholder="Select Tags"
+              label="Role"
+              name="role"
+              options={ROLES}
+              placeholder="Select Role"
             />
           </Pane.Body>
           <Pane.Footer>
             <Button
               className="mr-3"
               disabled={isSubmitting}
-              label={isEdit ? "Update" : "Save changes"}
+              label="Save changes"
               loading={isSubmitting}
               size="large"
               style="primary"

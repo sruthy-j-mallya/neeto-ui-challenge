@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 
 import { Button } from "neetoui";
-import { Container, Header, SubHeader } from "neetoui/layouts";
+import { Container, Header } from "neetoui/layouts";
 
-import { DUMMY_CONTACTS_DATA } from "./constants";
+import { DUMMY_DATA } from "./constants";
 import Menu from "./Menu";
+import CreatePane from "./Pane/Create";
 import Table from "./Table";
 
 const Contacts = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchString, setSearchString] = useState("");
   const [showMenu, setShowMenu] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showCreatePane, setShowCreatePane] = useState(false);
 
   return (
     <>
@@ -20,30 +21,20 @@ const Contacts = () => {
           menuBarToggle={() => setShowMenu(!showMenu)}
           title="All Contacts"
           actionBlock={
-            <Button icon="ri-add-line" label="Add Contact" size="small" />
+            <Button
+              icon="ri-add-line"
+              label="Add Contact"
+              size="small"
+              onClick={() => setShowCreatePane(true)}
+            />
           }
           searchProps={{
             value: searchTerm,
             onChange: e => setSearchTerm(e.target.value),
           }}
         />
-        <SubHeader
-          deleteButtonProps={{
-            count: 0,
-            selectedIDs: [],
-            onClick: () => {},
-          }}
-          disableButtonProps={{
-            count: 0,
-            selectedIDs: [],
-            onClick: () => {},
-          }}
-          searchProps={{
-            value: searchString,
-            onChange: e => setSearchString(e.target.value),
-          }}
-        />
-        <Table tableData={DUMMY_CONTACTS_DATA} />
+        <Table tableData={DUMMY_DATA} />
+        <CreatePane setShowPane={setShowCreatePane} showPane={showCreatePane} />
       </Container>
     </>
   );

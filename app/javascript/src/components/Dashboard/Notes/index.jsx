@@ -6,19 +6,19 @@ import { Container, Header } from "neetoui/layouts";
 
 import EmptyState from "components/Common/EmptyState";
 
-import { NOTES_CARD_DATA } from "./constants";
+import { CARD_DATA } from "./constants";
 import DeleteAlert from "./DeleteAlert";
 import Menu from "./Menu";
 import Note from "./Note";
-import NewNotePane from "./Pane/Create";
+import CreatePane from "./Pane/Create";
 
 const Notes = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [notes, setNotes] = useState(NOTES_CARD_DATA);
+  const [notes, setNotes] = useState(CARD_DATA);
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [selectedNoteId, setSelectedNoteId] = useState(0);
-  const [showNewNotePane, setShowNewNotePane] = useState(false);
+  const [showCreatePane, setShowCreatePane] = useState(false);
 
   return (
     <>
@@ -32,7 +32,7 @@ const Notes = () => {
               icon="ri-add-line"
               label="Add new note"
               size="small"
-              onClick={() => setShowNewNotePane(true)}
+              onClick={() => setShowCreatePane(true)}
             />
           }
           searchProps={{
@@ -54,16 +54,13 @@ const Notes = () => {
         ) : (
           <EmptyState
             image={EmptyNotesListImage}
-            primaryAction={() => setShowNewNotePane(true)}
+            primaryAction={() => setShowCreatePane(true)}
             primaryActionLabel="Add new note"
             subtitle="Add your notes to send customized emails to them."
             title="Looks like you don't have any notes!"
           />
         )}
-        <NewNotePane
-          setShowPane={setShowNewNotePane}
-          showPane={showNewNotePane}
-        />
+        <CreatePane setShowPane={setShowCreatePane} showPane={showCreatePane} />
         {showDeleteAlert && (
           <DeleteAlert
             selectedNoteId={selectedNoteId}
