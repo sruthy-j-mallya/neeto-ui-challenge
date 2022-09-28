@@ -1,7 +1,7 @@
 import { buildSelectOptions } from "utils";
 import * as yup from "yup";
 
-export const NOTES_FORM_INITIAL_FORM_VALUES = {
+export const INITIAL_FORM_VALUES = {
   title: "",
   description: "",
   assignee: null,
@@ -23,7 +23,7 @@ export const TAGS = buildSelectOptions([
   "V2",
 ]);
 
-export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
+export const VALIDATION_SCHEMA = yup.object().shape({
   title: yup.string().required("Title is required"),
   description: yup.string().required("Description is required"),
   assignee: yup
@@ -33,7 +33,7 @@ export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
       label: yup.string().oneOf(ASSIGNEES.map(assignee => assignee.label)),
       value: yup.string().oneOf(ASSIGNEES.map(assignee => assignee.value)),
     })
-    .required("Assigned Contact is required"),
+    .required("Assigned contact is required"),
   tags: yup
     .array()
     .of(
@@ -49,7 +49,7 @@ export const NOTES_FORM_VALIDATION_SCHEMA = yup.object().shape({
     .required("Tag is required"),
 });
 
-export const NOTES_TABLE_COLUMN_DATA = [
+export const COLUMNS = [
   {
     title: "Title",
     dataIndex: "title",
@@ -64,7 +64,7 @@ export const NOTES_TABLE_COLUMN_DATA = [
   },
 ];
 
-export const NOTES_CARD_DATA = [
+export const CARD_DATA = [
   {
     id: 1,
     title: "How to claim the warranty?",

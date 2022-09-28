@@ -20,9 +20,9 @@ const CONTACTS = [
   },
 ];
 
-export const DUMMY_CONTACTS_DATA = Array(10).fill(CONTACTS).flat();
+export const DUMMY_DATA = Array(10).fill(CONTACTS).flat();
 
-export const CONTACTS_FORM_INITIAL_FORM_VALUES = {
+export const INITIAL_FORM_VALUES = {
   firstName: "",
   lastName: "",
   email: "",
@@ -31,13 +31,13 @@ export const CONTACTS_FORM_INITIAL_FORM_VALUES = {
 
 export const ROLES = buildSelectOptions(["Owner", "Admin", "Developer"]);
 
-export const CONTACTS_FORM_VALIDATION_SCHEMA = yup.object().shape({
-  firstName: yup.string().required("First Name is required"),
-  lastName: yup.string().required("Last Name is required"),
+export const VALIDATION_SCHEMA = yup.object().shape({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
   email: yup
     .string()
-    .email("Invalid Email Address")
-    .required("Email Address is required"),
+    .email("Invalid email address")
+    .required("Email address is required"),
   role: yup
     .object()
     .nullable()

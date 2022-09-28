@@ -4,9 +4,9 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-import { CONTACTS_FORM_INITIAL_FORM_VALUES } from "../constants";
+import { INITIAL_FORM_VALUES } from "../constants";
 
-const NewContactPane = ({ showPane, setShowPane }) => {
+const Create = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
 
   return (
@@ -16,9 +16,9 @@ const NewContactPane = ({ showPane, setShowPane }) => {
           Add New Contact
         </Typography>
       </Pane.Header>
-      <Form contact={CONTACTS_FORM_INITIAL_FORM_VALUES} onClose={onClose} />
+      <Form contact={INITIAL_FORM_VALUES} onClose={onClose} />
     </Pane>
   );
 };
 
-export default NewContactPane;
+export default Create;

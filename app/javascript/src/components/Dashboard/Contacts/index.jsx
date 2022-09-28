@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import { Button } from "neetoui";
 import { Container, Header } from "neetoui/layouts";
 
-import { DUMMY_CONTACTS_DATA } from "./constants";
+import { DUMMY_DATA } from "./constants";
 import Menu from "./Menu";
-import NewContactPane from "./Pane/Create";
+import CreatePane from "./Pane/Create";
 import Table from "./Table";
 
 const Contacts = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showNewContactPane, setShowNewContactPane] = useState(false);
+  const [showCreatePane, setShowCreatePane] = useState(false);
 
   return (
     <>
@@ -25,7 +25,7 @@ const Contacts = () => {
               icon="ri-add-line"
               label="Add Contact"
               size="small"
-              onClick={() => setShowNewContactPane(true)}
+              onClick={() => setShowCreatePane(true)}
             />
           }
           searchProps={{
@@ -33,11 +33,8 @@ const Contacts = () => {
             onChange: e => setSearchTerm(e.target.value),
           }}
         />
-        <Table tableData={DUMMY_CONTACTS_DATA} />
-        <NewContactPane
-          setShowPane={setShowNewContactPane}
-          showPane={showNewContactPane}
-        />
+        <Table tableData={DUMMY_DATA} />
+        <CreatePane setShowPane={setShowCreatePane} showPane={showCreatePane} />
       </Container>
     </>
   );

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-import { Formik, Form } from "formik";
+import { Formik, Form as FormikForm } from "formik";
 import { Button, Pane, Toastr } from "neetoui";
 import { Input, Select } from "neetoui/formik";
 
-import { CONTACTS_FORM_VALIDATION_SCHEMA, ROLES } from "../constants";
+import { VALIDATION_SCHEMA, ROLES } from "../constants";
 
-const ContactForm = ({ onClose, contact }) => {
+const Form = ({ onClose, contact }) => {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = () => {
@@ -23,11 +23,11 @@ const ContactForm = ({ onClose, contact }) => {
       initialValues={contact}
       validateOnBlur={submitted}
       validateOnChange={submitted}
-      validationSchema={CONTACTS_FORM_VALIDATION_SCHEMA}
+      validationSchema={VALIDATION_SCHEMA}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="w-full">
+        <FormikForm className="w-full">
           <Pane.Body className="space-y-6">
             <Input
               required
@@ -78,10 +78,10 @@ const ContactForm = ({ onClose, contact }) => {
               onClick={onClose}
             />
           </Pane.Footer>
-        </Form>
+        </FormikForm>
       )}
     </Formik>
   );
 };
 
-export default ContactForm;
+export default Form;

@@ -4,9 +4,9 @@ import { Pane, Typography } from "neetoui";
 
 import Form from "./Form";
 
-import { NOTES_FORM_INITIAL_FORM_VALUES } from "../constants";
+import { INITIAL_FORM_VALUES } from "../constants";
 
-const NewNotePane = ({ showPane, setShowPane }) => {
+const Create = ({ showPane, setShowPane }) => {
   const onClose = () => setShowPane(false);
 
   return (
@@ -16,13 +16,9 @@ const NewNotePane = ({ showPane, setShowPane }) => {
           Add New Note
         </Typography>
       </Pane.Header>
-      <Form
-        isEdit={false}
-        note={NOTES_FORM_INITIAL_FORM_VALUES}
-        onClose={onClose}
-      />
+      <Form isEdit={false} note={INITIAL_FORM_VALUES} onClose={onClose} />
     </Pane>
   );
 };
 
-export default NewNotePane;
+export default Create;
